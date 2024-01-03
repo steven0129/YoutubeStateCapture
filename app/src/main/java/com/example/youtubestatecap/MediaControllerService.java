@@ -1,32 +1,22 @@
-package com.example.youtubestatecao;
+package com.example.youtubestatecap;
 
-import android.annotation.SuppressLint;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.app.Service;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ServiceInfo;
-import android.graphics.drawable.Drawable;
 import android.media.MediaMetadata;
 import android.media.session.MediaController;
 import android.media.session.MediaSessionManager;
 import android.media.session.PlaybackState;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 
 import java.util.List;
-import java.util.Set;
-
-import kotlin.jvm.Synchronized;
 
 public class MediaControllerService extends Service {
 
@@ -100,6 +90,8 @@ public class MediaControllerService extends Service {
                             String artUri = metadata.getString(MediaMetadata.METADATA_KEY_ALBUM_ART_URI);
 
 
+
+
                             Log.i(TAG, "Title: " + title);
                             Log.i(TAG, "Artist Name: " + artistName);
                             Log.i(TAG, "Album Artist: " + albumArtistName);
@@ -118,6 +110,7 @@ public class MediaControllerService extends Service {
                         super.onPlaybackStateChanged(state);
                         if(state != null) {
                             boolean isPlaying = state.getState() == PlaybackState.STATE_PLAYING;
+                            Log.i(TAG, "Playback State: " + state.getState());
                             Log.i(TAG, "MediaController.Callback onPlaybackStateChanged isPlaying: " + isPlaying);
                         }
                     }
